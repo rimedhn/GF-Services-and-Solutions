@@ -25,10 +25,12 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(5px);
+            padding: 20px;
+            box-sizing: border-box;
         }
         
         .image-modal.active {
-            display: flex;
+            display: flex !important;
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.3s ease-out;
@@ -214,34 +216,38 @@
     <!-- Navbar -->
     <nav class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
+            <!-- Desktop Layout -->
+            <div class="hidden md:flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <!-- Desktop Logo -->
-                    <div class="hidden md:flex items-center">
-                        <img src="https://github.com/rimedhn/GF-Services-and-Solutions/blob/main/GF%20Services%20and%20Solutions%20Logo%20Cuadrado.jpg?raw=true" 
-                             alt="GF Services Logo" class="h-12 w-12 rounded-lg mr-3"
-                             onerror="this.src=''; this.alt='Logo no disponible'; this.style.display='none';">
-                        <span class="text-white font-bold text-xl">GF Services and Solutions</span>
-                    </div>
-                    <!-- Mobile Logo -->
-                    <div class="md:hidden flex flex-col items-center">
-                        <img src="https://github.com/rimedhn/GF-Services-and-Solutions/blob/main/GF%20Services%20and%20Solutions%20Logo%20Cuadrado.jpg?raw=true" 
-                             alt="GF Services Logo" class="h-16 w-16 rounded-lg mb-1"
-                             onerror="this.src=''; this.alt='Logo no disponible'; this.style.display='none';">
-                        <span class="text-white font-bold text-sm text-center">GF Services</span>
-                    </div>
+                    <img src="https://github.com/rimedhn/GF-Services-and-Solutions/blob/main/GF%20Services%20and%20Solutions%20Logo%20Cuadrado.jpg?raw=true" 
+                         alt="GF Services Logo" class="h-12 w-12 rounded-lg mr-3"
+                         onerror="this.src=''; this.alt='Logo no disponible'; this.style.display='none';">
+                    <span class="text-white font-bold text-xl">GF Services and Solutions</span>
                 </div>
-                
-                <div class="hidden md:flex space-x-8">
+                <div class="flex space-x-8">
                     <a href="#inicio" class="text-white hover:text-yellow-400 transition-colors">Inicio</a>
                     <a href="#servicios" class="text-white hover:text-yellow-400 transition-colors">Servicios</a>
                     <a href="#nosotros" class="text-white hover:text-yellow-400 transition-colors">Nosotros</a>
                     <a href="#contacto" class="text-white hover:text-yellow-400 transition-colors">Contacto</a>
                 </div>
-                
-                <button class="md:hidden text-white" onclick="toggleMenu()">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+            </div>
+            
+            <!-- Mobile Layout -->
+            <div class="md:hidden py-4">
+                <div class="flex justify-between items-center mb-4">
+                    <div></div> <!-- Spacer -->
+                    <div class="flex flex-col items-center">
+                        <img src="https://github.com/rimedhn/GF-Services-and-Solutions/blob/main/GF%20Services%20and%20Solutions%20Logo%20Cuadrado.jpg?raw=true" 
+                             alt="GF Services Logo" class="h-20 w-20 rounded-lg mb-2"
+                             onerror="this.src=''; this.alt='Logo no disponible'; this.style.display='none';">
+                        <span class="text-white font-bold text-base text-center">GF Services</span>
+                    </div>
+                    <button class="text-white" onclick="toggleMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
             </div>
             
             <!-- Mobile Menu -->
@@ -1076,7 +1082,19 @@
         // Initialize gallery when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeGallery();
+            
+            // Debug: Check if images are found
+            console.log('Gallery images found:', galleryImages.length);
+        });
+
+        // Also initialize after window loads (backup)
+        window.addEventListener('load', function() {
+            if (galleryImages.length === 0) {
+                initializeGallery();
+                console.log('Gallery re-initialized on window load');
+            }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98cca59320fd19be',t:'MTc2MDE2Nzc3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ccb197150c19be',t:'MTc2MDE2ODI2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
